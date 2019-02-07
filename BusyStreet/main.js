@@ -10,7 +10,7 @@ window.onload = function() {
     // loading functions to reflect where you are putting the assets.
     // All loading functions will typically all be found inside "preload()".
     
-    var game = new Phaser.Game( 1000, 800, Phaser.AUTO, 'BusyStreet', { preload: preload, create: create, update: update } );
+    var game = new Phaser.Game( 1000, 800, Phaser.AUTO, 'BusyStreet/main.js', { preload: preload, create: create, update: update } );
     
     function preload() {
         // Load an image and call it 'finn'.
