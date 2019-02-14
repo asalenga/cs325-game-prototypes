@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Space Bam!</title>
+    <script src="js/phaser.js"></script>
+    <script src="js/main.js"></script>
+
+<style>
+body
+{
+    color: #777;
+    font-family: "Avenir", Verdana, sans-serif;
+}
+#readme
+{
+    margin-top: 10px;
+}
+</style>
+
+</head>
+<body>
+<div id="game"></div>
+<div id="readme">
+<h2>Space Bam!</h2>
+
+<ul>
+<li><strong>Controls:</strong>
+(Move left, move right, and fire)
+Player 1: Left arrow key, Right arrow key, spacebar
+Player 2: A key, D key, 1 key
+</li>
+
+<li><strong>Originality:</strong>
+My game incorporates parts of a classic space shooter type game, but has a number of unique points. My game is 2-player and the enemies continuously come towards the bottom of the screen. Any time an enemy is killed, another one spawns at a random location at the top of the screen. Every time 10 enemies are killed, the speed at which they move increases.
+</li>
+
+<li><strong>Technical Merit:</strong>
+It incorporates 2 different sets of controls on the same keyboard.
+</li>
+
+<li><strong>Prototype Postmortem:</strong>
+From this prototype, I learned how to properly add in images for sprites.
+The easiest part was positioning the players and adding their movesets. the hardest part was adding the collision event kill enemies and lasers for when the lasers come in contact with the enemies.
+</li>
+
+<li><strong>Prototype Assets:</strong>
+Sources:
+Music: http://freemusicarchive.org/music/Azureflux/Bit_Bops/03_azureflux_-_the_precession_of_the_equinoxes_in_the_inverted_alps
+Enemy: https://www.starship.xyz
+Red Spaceship: https://www.kisspng.com/png-rocket-spacecraft-outer-space-red-spaceship-78840/preview.html
+Rocketship: https://www.kisspng.com/png-rocket-spacecraft-clip-art-space-ship-395742/
+<ul>
+<li>Bouncing Phaser image: <a href="https://phaser.io/download/logo">Phaser logo</a></li>
+</ul>
+</li>
+
+<li><strong>Prototype Closest Other Game:</strong>
+Which other game most closely resembles your game? If you are borrowing code from a Phaser Example, you must say so here. If you borrow code from elsewhere, you must say so here.
+My game resembles games like Space Invaders or Galaga
+Code was used from the folowing sources:
+http://phaser.io/examples/v2/arcade-physics/group-vs-group
+https://github.com/photonstorm/phaser-examples/blob/master/examples/arcade%20physics/global%20pause.js
+</li>
+
+<li><strong>High Concept:</strong>
+Stop the invaders from reaching the bottom of the screen.
+</li>
+
+<li><strong>Theme:</strong>
+N/A
+</li>
+
+<li><strong>Mandated Variety:</strong>
+State which input, randomness, genre, and play style you used in this prototype.
+Input: the keyboard
+Randomness: the placement of the enemies and their speeds
+Genre: Shoot-em up / space
+Play Style: Top-down?
+</li>
+
+<li><strong>Prototype Goal:</strong>
+This evaluates movement and firing mechanics as well as collision events.
+</li>
+
+<li><strong>Player Experience Goals:</strong>
+Teamwork & Competitive spirit to get the highest score.
+</li>
+
+<li><strong>Gameplay:</strong>
+Players can move left and right using their assigned controls and fire at the oncoming enemies. The enemies travel straight down towards the bottom of the screen. Any time a laser is fired and hits an enemy, the laser and enemy both disappear and 10 points are added.
+</li>
+
+<li><strong>Strategies:</strong>
+Coordinate the firing between both players since the latency is a little weird. Some inputted shots won't register because the keyboard only takes one key at a time.
+</li>
+
+<li><strong>Story/Setting/Premise:</strong>
+A paragraph about the world your game is set in and who the characters are. What makes the game world and its occupants unique and interesting? Do the tokens represent something? If the game has a backstory, mention it here. If the game is abstract, then say so.
+How will the dramatic tension interact with the gameplay tension?
+In a galaxy not very far away, two rocket ships are fighting a fleet of invaders, persistent on delivering deadly food to the citizens of Earth.
+</li>
+
+<li><strong>Target Audience:</strong>
+This game is for everyone.
+</li>
+
+<li><strong>Play Time:</strong>
+This game should take less than a minute to play.
+</li>
+
+</ul>
+
+</div>
+</body>
+</html>
