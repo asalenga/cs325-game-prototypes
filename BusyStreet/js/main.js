@@ -24,7 +24,6 @@ window.onload = function() {
     }
     
     var player;
-    var road;
     var numLives = 3;
     var cursors;
     var hazard;
@@ -33,7 +32,7 @@ window.onload = function() {
     var done = false;
     
     function create() {
-        road = game.add.sprite(0, 0, 'road');
+        game.add.sprite(0, 0, 'road');
         player = game.add.sprite( game.world.centerX, game.world.height - 50, 'finn' );
         // Anchor the sprite at its center, as opposed to its top-left corner.
         // so it will be truly centered.
