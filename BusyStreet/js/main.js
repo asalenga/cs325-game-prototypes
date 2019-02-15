@@ -14,7 +14,7 @@ window.onload = function() {
     
     function preload() {
         // Load an image and call it 'finn'.
-        game.load.image('finn', 'assets/pixel_finn.jpg' );
+        game.load.image('finn', 'assets/pixel-finn.jpg' );
         // Source: https://3.bp.blogspot.com/-2Df83Vxtmiw/V5tL6ruTb0I/AAAAAAAAAYw/6O7FrcwPht8_ukd42jtiJN-ieu7l2tUyQCLcB/s1600/background-1.png
         game.load.image('road', 'assets/roadBackground.png');
         // Source: https://www.clipartmax.com/png/middle/273-2730097_pixel-art-finn-y-jake.png
