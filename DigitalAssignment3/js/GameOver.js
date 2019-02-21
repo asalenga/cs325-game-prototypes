@@ -20,8 +20,8 @@ BasicGame.GameOver.prototype = {
 
 		this.add.sprite(0, 0, 'nightSky');
 
-		var style = { font: "100px Verdana", fill: "#FF0000", align: "center" };
-     		var text = this.game.add.text( this.game.world.centerX, this.game.world.centerY, "GAME OVER", style );
+		var style = { font: "50px Verdana", fill: "#FF0000", align: "center" };
+     		var text = this.game.add.text( 50, this.game.world.centerY, "GAME OVER", style );
 
         // text.anchor.setTo( 0.5, 0.0 );
 
