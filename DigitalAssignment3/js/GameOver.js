@@ -18,9 +18,12 @@ BasicGame.GameOver.prototype = {
 		this.music = this.add.audio('titleMusic');
 		this.music.play();
 
-		this.add.sprite(0, 0, 'titlePage');
+		this.add.sprite(0, 0, 'nightSky');
 
-		this.playButton = this.add.button( 303, 400, 'playButton', this.startGame, this, 'over', 'out', 'down');
+		var style = { font: "100px Verdana", fill: "#FF0000", align: "center" };
+     		var text = this.game.add.text( this.game.world.centerX, this.game.world.centerY, "GAME OVER", style );
+
+        // text.anchor.setTo( 0.5, 0.0 );
 
 	},
 
