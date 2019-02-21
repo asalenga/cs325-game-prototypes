@@ -108,7 +108,7 @@ BasicGame.Game.prototype = {
         // new trajectory.
         this.player.rotation = this.game.physics.arcade.accelerateToPointer( this.player, this.game.input.activePointer, 1000, 1000, 1000 );
         // if (done == false) {
-        this.game.physics.arcade.overlap(this.player, this.lightning, this.quitGame(), null, this);
+        this.game.physics.arcade.overlap(this.player, this.lightning, this.quitGame, null, this);
         // }
     },
 
