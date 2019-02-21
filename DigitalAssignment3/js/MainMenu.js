@@ -21,7 +21,7 @@ BasicGame.MainMenu.prototype = {
 		this.add.sprite(0, 0, 'titlePage');
 		
 		var style = { font: "50px Verdana", fill: "#FFFFFF", align: "center" };
-     		var title = this.game.add.text( 50, this.game.world.centerY, "Angled Angle", style );
+     		var title = this.game.add.text( 300, this.game.world.centerY-100, "Angled Angel", style );
 
 		this.playButton = this.add.button( 303, 400, 'playButton', this.startGame, this, 'over', 'out', 'down');
 
