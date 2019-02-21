@@ -18,7 +18,7 @@ BasicGame.GameOver.prototype = {
 		this.music = this.add.audio('titleMusic');
 		this.music.play();
 
-		this.add.sprite(0, 0, 'nightSky');
+		this.add.sprite(0, 0, 'nightsky');
 
 		var style = { font: "50px Verdana", fill: "#FF0000", align: "center" };
      		var text = this.game.add.text( 50, this.game.world.centerY, "GAME OVER", style );
