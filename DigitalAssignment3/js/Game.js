@@ -71,8 +71,8 @@ BasicGame.Game.prototype = {
             // danger.events.onOutOfBounds.add(incrementScore, this);
         }
 
-            this.player.inputEnabled = true;
-            this.player.events.onInputDown.add( function() { this.quitGame(); }, this );
+//             this.player.inputEnabled = true;
+//             this.player.events.onInputDown.add( function() { this.quitGame(); }, this );
 
         // Add some text using a CSS style.
         // Center it in X, and position its top 15 pixels from the top of the world.
