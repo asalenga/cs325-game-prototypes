@@ -25,22 +25,22 @@ BasicGame.GameOver.prototype = {
 
         // text.anchor.setTo( 0.5, 0.0 );
 
-	},
-
-	update: function () {
-
-		//	Do some nice funky main menu effect here
-
-	},
-
-	startGame: function (pointer) {
-
-		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
-		this.music.stop();
-
-		//	And start the actual game
-		this.state.start('Game');
-
 	}
+
+// 	update: function () {
+
+// 		//	Do some nice funky main menu effect here
+
+// 	},
+
+// 	startGame: function (pointer) {
+
+// 		//	Ok, the Play Button has been clicked or touched, so let's stop the music (otherwise it'll carry on playing)
+// 		this.music.stop();
+
+// 		//	And start the actual game
+// 		this.state.start('Game');
+
+// 	}
 
 };
