@@ -35,7 +35,7 @@ BasicGame.Preloader.prototype = {
         this.load.image('background', 'assets/WoodFloor.jpg');
 
         this.load.image('burglar', 'assets/Burglar.png');
-        this.load.image('cop', 'assets/Cop.png');
+        this.load.image('cop', 'assets/cop.png');
         this.load.image('flashlight', 'assets/Flashlight.png');
         this.load.image('wall', 'assets/Wall.png');
         this.load.image('gem', 'assets/Gem.png');
