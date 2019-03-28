@@ -14,13 +14,13 @@ window.onload = function() {
     
     function preload() {
         // Load an image and call it 'finn'.
-        game.load.image('finn', 'assets/pixel-finn.jpg' );
+        game.load.image('finn', 'assets/pixel-finn' );
         // Source: https://3.bp.blogspot.com/-2Df83Vxtmiw/V5tL6ruTb0I/AAAAAAAAAYw/6O7FrcwPht8_ukd42jtiJN-ieu7l2tUyQCLcB/s1600/background-1.png
-        game.load.image('road', 'assets/roadBackground.png');
+        game.load.image('road', 'assets/roadBackground');
         // Source: https://www.clipartmax.com/png/middle/273-2730097_pixel-art-finn-y-jake.png
-        game.load.image('hazard', 'assets/phaser.png');
+        game.load.image('hazard', 'assets/phaser');
         // Source: https://images.pexels.com/photos/1085677/pexels-photo-1085677.jpeg?cs=srgb&dl=beach-bird-s-eye-view-from-above-1085677.jpg&fm=jpg
-        game.load.image('endzone', 'assets/beach.jpg');
+        game.load.image('endzone', 'assets/beach');
     }
     
     var player;
