@@ -57,6 +57,7 @@ BasicGame.Game = function (game) {
     this.greenBulletTime = null;
     this.blueBulletTime = null;
     this.gameClock = null;
+    this.playersWin = null; // Check if the players have won or lost
 };
 
 /*
@@ -131,12 +132,16 @@ BasicGame.Game.prototype = {
         this.player1.anchor.setTo( 0.5, 0.5 );
         this.player1.width = 75;
         this.player1.height = 75;
+        this.player1.spawnBeginning = 0;
         this.player2 = this.game.add.sprite( (this.game.world.width/4)*3, this.game.world.centerY, 'player2' );
         this.player2.anchor.setTo( 0.5, 0.5 );
         this.player2.width = 75;
         this.player2.height = 75;
+        this.player2.spawnBeginning = 0;
 
         this.game.physics.enable( [this.player1,this.player2,this.wall], Phaser.Physics.ARCADE );
+        // this.player1.body.setSize(55, 55, 10, 10);
+        // this.player2.body.setSize(55, 55, 10, 10);
         //this.game.physics.enable( this.player2, Phaser.Physics.ARCADE );
         //this.game.physics.enable( this.wall, Phaser.Physics.ARCADE );
         this.wall.body.collideWorldBounds = true;
@@ -281,6 +286,7 @@ BasicGame.Game.prototype = {
     	this.redEnemy1.height = 60;
     	this.redEnemy1.width = 60;
     	this.redEnemy1.color = "red";
+    	// this.redEnemy1.body.setSize(10, 10, 25, 25);
 
     	// this.redEnemy2 = this.enemies.create(800, this.game.world.height-10, 'RedEnemy');
     	// this.redEnemy2.anchor.setTo(0.5,0.5);
@@ -739,10 +745,12 @@ BasicGame.Game.prototype = {
         // var text = this.game.add.text( this.game.world.centerX, 15, "Get your ship up and running!", style );
         // text.anchor.setTo( 0.5, 0.0 );
 
-        this.gameClock = this.game.add.text( 200, 15, 'Elapsed seconds: 0.00', style );
-        this.gameClock.anchor.setTo( 0.5, 0.0 );
+        this.gameClock = this.game.add.text( 50, 15, 'Elapsed seconds: '+this.game.time.totalElapsedSeconds(), style );
+        // this.gameClock.anchor.setTo( 0.0, 0.0 );
 
-        this.spawnBeginning = 0;
+		this.timeSoFar = this.game.time.totalElapsedSeconds();
+
+        // this.spawnBeginning = 0;
         
         // // When you click on the sprite, you go back to the MainMenu.
         // this.wall.inputEnabled = true;
@@ -758,7 +766,6 @@ BasicGame.Game.prototype = {
         this.dKey = this.game.input.keyboard.addKey(Phaser.Keyboard.D);
         this.twoKey = this.game.input.keyboard.addKey(Phaser.Keyboard.TWO);
         this.oneKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ONE);
-        // oneKey = game.input.keyboard.addKey(Phaser.Keyboard.ONE);
         // spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
         // this.player1.body.onOverlap = new Phaser.Signal();
@@ -769,7 +776,7 @@ BasicGame.Game.prototype = {
 
     update: function () {
 
-    	this.gameClock.text = 'Elapsed seconds: ' + Phaser.Math.roundTo(this.game.time.totalElapsedSeconds(),-2);
+    	this.gameClock.text = 'Elapsed seconds: ' + Phaser.Math.roundTo(this.game.time.totalElapsedSeconds()-this.timeSoFar,-2);
         //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
         
         // Accelerate the 'logo' sprite towards the cursor,
@@ -791,8 +798,8 @@ BasicGame.Game.prototype = {
     	// this.game.physics.arcade.overlap(this.enemies, this.bullets, this.killEnemy, null, this);
     	this.game.physics.arcade.overlap([this.redBullets,this.yellowBullets,this.greenBullets,this.blueBullets],this.enemies,this.killEnemy,null,this);
     	        // game.physics.arcade.overlap(bullets, enemies, enemyKill, null, this);
-
-    	this.enemies.forEach(this.chasePlayer, this, null);
+    	this.game.time.events.add(Phaser.Timer.SECOND * 5, this.eachEnemy, this);
+    	// this.enemies.forEach(this.chasePlayer, this, null);
 		this.game.physics.arcade.overlap(this.enemies, [this.player1,this.player2], this.killPlayer, null, this);
  //   	this.game.physics.arcade.moveToObject(this.redEnemy1, this.player1, 25);
 
@@ -894,7 +901,7 @@ BasicGame.Game.prototype = {
         // thrown in the direction that the item is facing (as tracked before).
         // Notice that an initial velocity is set in the corresponding direction...
 
-        if ((this.twoKey.isDown) && (this.hitGate != true) && (this.keyIsPressed1 != true)) {
+        if ((this.oneKey.isDown) && (this.hitGate != true) && (this.keyIsPressed1 != true)) {
             if ((this.p1Possess == true) && (this.p1currItem != null)) {
                 if (this.p1currItem.pos == "left") {
                     // this.p1currItem.body.velocity.setTo(-100,0);
@@ -931,7 +938,7 @@ BasicGame.Game.prototype = {
         // which takes p1currItemTemp as its argument. p1currItemTemp is a variable that stores a copy of p1currItem, allowing the original item stored in
         // p1currItem to be manipulated even after p1currItem changes, which happens when the player throws the original p1currItem and picks up another item.
 
-        if ((this.twoKey.isDown) && (this.hitGate != true) && (this.p1currItem != null) && (this.keyIsPressed1 != true)) { // Checks if object to throw exists and if throw button has been pressed
+        if ((this.oneKey.isDown) && (this.hitGate != true) && (this.p1currItem != null) && (this.keyIsPressed1 != true)) { // Checks if object to throw exists and if throw button has been pressed
             if (this.p1currItem.body.velocity.x > 0) {
                 this.p1currItem.body.acceleration.setTo(-100,0);
                 this.p1currItemTemp = this.p1currItem;
@@ -1031,7 +1038,7 @@ BasicGame.Game.prototype = {
         // thrown in the direction that the item is facing (as tracked before).
         // Notice that an initial velocity is set in the corresponding direction...
 
-        if ((this.jKey.isDown) && (this.hitGate != true) && (this.keyIsPressed2 != true)) {
+        if ((this.hKey.isDown) && (this.hitGate != true) && (this.keyIsPressed2 != true)) {
             if ((this.p2Possess == true) && (this.p2currItem != null)) {
                 if (this.p2currItem.pos == "left") {
                     // this.p1currItem.body.velocity.setTo(-100,0);
@@ -1067,7 +1074,7 @@ BasicGame.Game.prototype = {
         // p2currItem to be manipulated even after p2currItem changes, which happens when the player throws the original p1currItem and picks up another item.
 
 
-        if ((this.jKey.isDown) && (this.hitGate != true) && (this.p2currItem != null) && (this.keyIsPressed2 != true)) { // Checks if object to throw exists and if throw button has been pressed
+        if ((this.hKey.isDown) && (this.hitGate != true) && (this.p2currItem != null) && (this.keyIsPressed2 != true)) { // Checks if object to throw exists and if throw button has been pressed
             // if (this.slowDownValue2 != 0) {
          //    if ((this.done == true) || (this.p2currItemTemp == null)) {
          //    	this.p2currItemTemp = this.p2currItem;
@@ -1121,7 +1128,7 @@ BasicGame.Game.prototype = {
         }
 
         // if (this.p1currItem in this.rayGuns.children) {
-        if ((this.p1currItem != null) && (this.oneKey.isDown)) {
+        if ((this.p1currItem != null) && (this.twoKey.isDown) && (this.keyIsPressed1 != true) && (this.p1Possess == true)) {
          	if ((this.p1currItem == this.redGun) && (this.game.time.now > this.redBulletTime)) {
         		// this.redBullet = this.redBullets.getFirstExists(false);
 
@@ -1211,7 +1218,7 @@ BasicGame.Game.prototype = {
         }
 
 
-        if ((this.p2currItem != null) && (this.hKey.isDown)) {
+        if ((this.p2currItem != null) && (this.jKey.isDown) && (this.keyIsPressed2 != true) && (this.p2Possess == true)) {
          	if ((this.p2currItem == this.redGun) && (this.game.time.now > this.redBulletTime)) {
         		switch (this.p2currItem.pos) {
         			case "right":
@@ -1332,21 +1339,28 @@ BasicGame.Game.prototype = {
     // },
 
     pieceShip: function (ship, piece) {
-    	if (piece.player == ship.player) {
+    	if (piece.player == ship.player) { // Checks if the piece is brought back to the correct ship
+    		if (piece == this.p1currItem) {this.p1Possess = false;}
+    		else if (piece == this.p2currItem) {this.p2Possess = false;}
     		piece.kill();
     	}
-    	if (this.pieces.countLiving() == 0) {
-    		// call quitGame
+    	if (this.pieces.countLiving() == 0) { // Ends the game once all pieces have been brought back
+    		// The players win; call quitGame
+    		this.playersWin = true;
     		this.quitGame();
     	}
     },
 
+    eachEnemy: function () {
+    	this.enemies.forEach(this.chasePlayer, this, null);
+    },
+
     chasePlayer: function (enemy) {
     	if (enemy.x < (this.game.world.width/2)) { // If the enemy is on the left half of the screen, follow player 1
-    		this.game.physics.arcade.moveToObject(enemy, this.player1, 20);
+    		this.game.physics.arcade.moveToObject(enemy, this.player1, 10);
     	}
     	else { // If the enemy is on the right half of the screen, follow player 2
-    		this.game.physics.arcade.moveToObject(enemy, this.player2, 20);
+    		this.game.physics.arcade.moveToObject(enemy, this.player2, 10);
     	}
     },
 
@@ -1403,6 +1417,19 @@ BasicGame.Game.prototype = {
 
     },
 
+    setPossessionFalse: function (player) {
+    	if (player == this.player2) {
+    		this.p2currItem.body.velocity.setTo(0,0);
+    		this.p2currItem.body.acceleration.setTo(0,0);
+    		this.p2Possess = false;
+    	}
+    	else if (player == this.player1) {
+    		this.p1currItem.body.velocity.setTo(0,0);
+    		this.p1currItem.body.acceleration.setTo(0,0);
+    		this.p1Possess = false;
+    	}
+    },
+
     killBullet: function (bullet2, bullet1) {
     	if (bullet1 != null) {
     		bullet1.kill();
@@ -1420,39 +1447,120 @@ BasicGame.Game.prototype = {
     },
 
     killPlayer: function (player, enemy) {
-    	if (this.game.time.now > this.spawnBeginning) { // Allows the player to not be killable for a number of seconds
+    	if (this.game.time.now > player.spawnBeginning) { // Allows the player to not be killable for a number of seconds
     		player.kill();
-    		this.game.add.text();
+    		if (player == this.player1) {
+    			// this.p1currItem.body.velocity.setTo(0,0);
+    			// this.p1currItem.body.acceleration.setTo(0,0);
+    			// this.p1Possess = false;
+    			if (this.keyIsPressed1 == true) {
+    				this.game.time.events.add(Phaser.Timer.SECOND * 3, this.setPossessionFalse, this, this.player1);
+    			}
+    			else if (this.p1currItem != null) {
+    				this.p1currItem.body.velocity.setTo(0,0);
+		    		this.p1currItem.body.acceleration.setTo(0,0);
+		    		this.p1Possess = false;
+		    	}
+    		}
+    		else if (player == this.player2) {
+    			// this.p2currItem.body.velocity.setTo(0,0);
+    			// this.p2currItem.body.acceleration.setTo(0,0);
+    			if (this.keyIsPressed2 == true) {
+    				this.game.time.events.add(Phaser.Timer.SECOND * 3, this.setPossessionFalse, this, this.player2);
+    			}
+    			else if (this.p2currItem != null) {
+    				this.p2currItem.body.velocity.setTo(0,0);
+		    		this.p2currItem.body.acceleration.setTo(0,0);
+		    		this.p2Possess = false;
+    			}
+    			
+    		}
+    		// this.game.add.text();
     		// var style = { font: "25px Verdana", fill: "#FFFFFF", align: "center" };
     		if (player == this.player1) {this.textPosX = this.game.world.width/4;}
     		else {this.textPosX = 3 * this.game.world.width/4;}
 	        this.reviveText = this.game.add.text( this.textPosX, this.game.world.centerY, '10 seconds till revive', {font: "25px Verdana", fill: "#FFFFFF", align: "center"} );
 	        this.reviveText.anchor.setTo(0.5,0.5);
+    		this.game.time.events.add(Phaser.Timer.SECOND * 10, this.respawnPlayer, this, player);
     	}
     	if ((this.player1.alive == false) && (this.player2.alive == false)) { // The game ends if both players are dead
+    		// The players lose
+    		this.playersWin = false;
     		this.quitGame();
     	}
-    	this.game.time.events.add(Phaser.Timer.SECOND * 10, this.respawnPlayer, this, player);
+
+    	// if (player == this.player1) {
+	    // 	if (this.game.time.now > this.player1.spawnBeginning) { // Allows the player to not be killable for a number of seconds
+	    // 		this.player1.kill();
+	    // 		// this.game.add.text();
+	    // 		// var style = { font: "25px Verdana", fill: "#FFFFFF", align: "center" };
+	    // 		this.textPosX = this.game.world.width/4;
+		   //      this.reviveText = this.game.add.text( this.textPosX, this.game.world.centerY, '10 seconds till revive', {font: "25px Verdana", fill: "#FFFFFF", align: "center"} );
+		   //      this.reviveText.anchor.setTo(0.5,0.5);
+    	// 		this.game.time.events.add(Phaser.Timer.SECOND * 10, this.respawnPlayer, this, this.player1);
+	    // 	}
+	    // }
+	    // else if (player == this.player2) {
+	    // 	if (this.game.time.now > this.player2.spawnBeginning) { // Allows the player to not be killable for a number of seconds
+	    // 		this.player2.kill();
+	    // 		// this.game.add.text();
+	    // 		// var style = { font: "25px Verdana", fill: "#FFFFFF", align: "center" };
+	    // 		this.textPosX = 3 * this.game.world.width/4;
+		   //      this.reviveText = this.game.add.text( this.textPosX, this.game.world.centerY, '10 seconds till revive', {font: "25px Verdana", fill: "#FFFFFF", align: "center"} );
+		   //      this.reviveText.anchor.setTo(0.5,0.5);
+    	// 		this.game.time.events.add(Phaser.Timer.SECOND * 10, this.respawnPlayer, this, this.player2);
+	    // 	}
+	    // }
     },
 
     respawnPlayer: function (player) {
     	this.reviveText.kill();
-    	this.spawnBeginning = this.game.time.now+3000; // Invulnerable for 3 seconds
     	if (player == this.player2) {
     		player.reset((this.game.world.width/4)*3, this.game.world.centerY);
+    		this.player2.spawnBeginning = this.game.time.now+3000; // Invulnerable for 3 seconds
+    		
+    		// https://phaser.io/examples/v2/tweens/yoyo
+    		// https://phaser.io/docs/2.4.4/Phaser.Tween.html
+    		this.player2.alpha = 1;
+		    // Fade player1 to alpha 0 over 1/2 of a second, and back to 1 over 1/2 of a second
+		    var tween = this.game.add.tween(this.player2).to( { alpha: 0 }, 500, "Linear", true, 0, -1);
+		    tween.yoyo(true, 0);
+		    // Performs the blinking tween 3 times total (repeat twice after the first time)
+		    tween.repeat(2);
     	}
     	else {
     		player.reset((this.game.world.width/4), this.game.world.centerY);
+    		this.player1.spawnBeginning = this.game.time.now+3000; // Invulnerable for 3 seconds
+    		
+    		// https://phaser.io/examples/v2/tweens/yoyo
+    		// https://phaser.io/docs/2.4.4/Phaser.Tween.html
+    		this.player1.alpha = 1;
+		    // Fade player1 to alpha 0 over 1/2 of a second, abd back to 1 over 1/2 of a second
+		    var tween = this.game.add.tween(this.player1).to( { alpha: 0 }, 500, "Linear", true, 0, -1);
+		    tween.yoyo(true, 0);
+		    // Performs the blinking tween 3 times total (repeat twice after the first time)
+		    tween.repeat(2);
     	}
     },
 
     quitGame: function () {
 
-        //  Here you should destroy anything you no longer need.
-        //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
+    	this.finalTime = this.game.time.totalElapsedSeconds()-this.timeSoFar;
 
-        //  Then let's go back to the main menu.
-        this.state.start('MainMenu');
+        var style = { font: "25px Verdana", fill: "#FFFFFF", align: "center" };
+        // var text = this.game.add.text( this.game.world.centerX, 15, "Get your ship up and running!", style );
+        // text.anchor.setTo( 0.5, 0.0 );
+
+        // Displays the final time
+        this.endText = this.game.add.text( this.game.world.centerX, this.game.world.centerY, 'Your time: '+Phaser.Math.roundTo(this.finalTime,-2), style );
+        this.endText.anchor.setTo(0.5,0.5);
+
+        if (this.playersWin == true) {
+        	this.state.start('WinScreen');
+        }
+        else if (this.playersWin == false) {
+        	this.state.start('LoseScreen');
+        }
 
     }
 

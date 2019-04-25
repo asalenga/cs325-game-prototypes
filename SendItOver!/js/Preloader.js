@@ -16,7 +16,10 @@ BasicGame.Preloader.prototype = {
 		//	These are the assets we loaded in Boot.js
 		//	A nice sparkly background and a loading progress bar
 		this.background = this.add.sprite(0, 0, 'preloaderBackground');
-		this.preloadBar = this.add.sprite(300, 400, 'preloaderBar');
+		this.background.width = this.game.world.width;
+		this.background.height = this.game.world.height;
+		this.preloadBar = this.add.sprite(this.game.world.centerX, 400, 'preloaderBar');
+		this.preloadBar.anchor.setTo(0.5,0.5);
 
 		//	This sets the preloadBar sprite as a loader sprite.
 		//	What that does is automatically crop the sprite from 0 to full-width
@@ -28,6 +31,8 @@ BasicGame.Preloader.prototype = {
 		this.load.image('titlePage', 'assets/title.jpg');
 		this.load.atlas('playButton', 'assets/play_button.png', 'assets/play_button.json');
 		this.load.audio('titleMusic', ['assets/Poppers and Prosecco.mp3']);
+		this.load.image('titleText', 'assets/SendItOver!Title3.png'); // Source: https://fontmeme.com/pixel-fonts/
+
 		//	+ lots of other required assets here
         this.load.image( 'player1', 'assets/Astronaut1.png' );
         this.load.image( 'player2', 'assets/Astronaut2.png' );
@@ -86,11 +91,11 @@ BasicGame.Preloader.prototype = {
 		//	If you don't have any music in your game then put the game.state.start line into the create function and delete
 		//	the update function completely.
 		
-		if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
-		{
-			this.ready = true;
+		// if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
+		// {
+		// 	this.ready = true;
 			this.state.start('MainMenu');
-		}
+		// }
 
 	}
 
