@@ -31,6 +31,7 @@ window.onload = function() {
     var p1Instructions;
     var p2Instructions;
     var pauseInstructions;
+    var pauseText;
 
     function create() {
         // timer = game.time.create(false);
@@ -113,6 +114,9 @@ window.onload = function() {
         
         game.physics.arcade.isPaused = true;
         
+        pauseText = game.add.text(this.game.world.centerX, this.game.world.centeryY-200, 'PAUSED', { fontSize: '30px', fill: '#0055FF', align:'center' });
+        pauseText.anchor.setTo(0.5,0.5);
+        
         p1Instructions = game.add.text(this.game.world.width/4, this.game.world.centerY, 'Player 1\nA and D to move\n1 to shoot', { fontSize: '30px', fill: '#FFFFFF', align:'center' });
         p1Instructions.anchor.setTo(0.5,0.5);
         
@@ -160,6 +164,7 @@ window.onload = function() {
 
         p1Instructions.visible = (p1Instructions.visible) ? false : true;
         p2Instructions.visible = (p2Instructions.visible) ? false : true;
+        pauseText.visible = (pauseText.visible) ? false : true;
         pauseInstructions.setText('Press P to unpause');
         pauseInstructions.visible = (pauseInstructions.visible) ? false : true;
         game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
