@@ -195,35 +195,48 @@ window.onload = function() {
     }
 
     function endGame (enemy) {
-        game.add.text(game.world.centerX-225, game.world.centerY-25, 'GAME OVER', { fontSize: '75px', fill: '#FF0000' });
-        game.add.text(game.world.centerX-100, game.world.centerY+50, 'Final Score: ' + score, { fontSize: '30px', fill: '#AAFF00' });
+        var gameOverText = game.add.text(game.world.centerX, game.world.centerY-25, 'GAME OVER', { fontSize: '75px', fill: '#FF0000' });
+        gameOverText.anchor.setTo(0.5,0.5);
+        var finalScoreText = game.add.text(game.world.centerX, game.world.centerY+50, 'Final Score: ' + score, { fontSize: '30px', fill: '#AAFF00' });
+        finalScoreText.anchor.setTo(0.5,0.5);
         // music.pause();
+        var gameOverComment = game.add.text(game.world.centerX, game.world.centerY+150, '', { fontSize: '20px', fill: '#FFFFFF' });
+        gameOverComment.achor.setTo(0.5,0.5);
         if (score <= 50) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, 'Bruh... Fr tho? Only ' +score + ' points? You done messed up.', { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, 'Bruh... Fr tho? Only ' +score + ' points? You done messed up.', { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText('Bruh... Fr tho? Only ' +score + ' points? You done messed up.');
         }
         else if (score <= 150) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, 'Meh. Maybe you should stretch first.', { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, 'Meh. Maybe you should stretch first.', { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText('Meh. Maybe you should stretch first.');
         }
         else if (score <= 300) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, "I mean... I guess that's an A for effort", { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, "I mean... I guess that's an A for effort.", { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText("I mean... I guess that's an A for effort.");
         }
         else if (score <= 700) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, 'Hey not bad, you could do better though.', { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, 'Hey not bad, you could do better though.', { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText('Hey not bad, you could do better though.');
         }
         else if (score <= 1000) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, 'Noice! You beat my single player high score!', { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, 'Noice! You beat my single player high score!', { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText("Noice! You beat my single player high score!");
         }
         else if (score <= 2000) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, "Weow. That's a solid number right there. How many times\nhave you played this? Don't be such a try-hard.", { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, "Weow. That's a solid number right there. How many times\nhave you played this?\n\n...Try-hard.", { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText("Weow. That's a solid number right there. How many times\nhave you played this?\n\n...Try-hard.");
         }
         else if (score <= 3000) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, "Hey, you do realize that you still have a life to live, right?\nGo hang out with friends or something.\nStop playing this game.", { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, "Hey, you do realize that you still have a life to live, right?\nGo hang out with friends or something.\nStop playing this game.", { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText("Hey, you do realize that you still have a life to live, right?\nGo hang out with friends or something.\nStop playing this game.");
         }
         else if (score <= 5000) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, "If you're seeing this, message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)", { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, "If you're seeing this message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)", { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText"If you're seeing this message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)");
         }
         else if (score > 5000) {
-            game.add.text(game.world.centerX-250, game.world.centerY+150, "Honestly, what is life? Do you even exist? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up.", { fontSize: '20px', fill: '#FFFFFF' });
+            //game.add.text(game.world.centerX-250, game.world.centerY+150, "Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.", { fontSize: '20px', fill: '#FFFFFF' });
+            gameOverComment.setText("Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.");
         }
         // Source: https://github.com/photonstorm/phaser-examples/blob/master/examples/arcade%20physics/global%20pause.js
         game.physics.arcade.isPaused = true;
