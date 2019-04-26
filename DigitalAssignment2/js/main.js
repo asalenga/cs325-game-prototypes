@@ -232,7 +232,7 @@ window.onload = function() {
         }
         else if (score <= 5000) {
             //game.add.text(game.world.centerX-250, game.world.centerY+150, "If you're seeing this message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)", { fontSize: '20px', fill: '#FFFFFF' });
-            gameOverComment.setText"If you're seeing this message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)");
+            gameOverComment.setText("If you're seeing this message, well I don't believe you.\nI'm sitting here at 4 in the morning typing this out.\nWhy am I still awake? Idk. You tell me. You probably hacked the game\nor something, bc you weren't supposed to get " +score+" points.\nThanks for playing!\nI don't have any new messages beyond the 3000 point mark...\nor do I...? ;)");
         }
         else if (score > 5000) {
             //game.add.text(game.world.centerX-250, game.world.centerY+150, "Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.", { fontSize: '20px', fill: '#FFFFFF' });
