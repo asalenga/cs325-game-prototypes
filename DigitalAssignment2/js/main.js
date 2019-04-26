@@ -104,6 +104,10 @@ window.onload = function() {
         spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
         cursors = game.input.keyboard.createCursorKeys();
+        
+        pKey = game.input.keyboard.addKey(Phaser.Keyboard.P);
+        pKey.onDown.add(togglePause, this);
+        
     }
     
     function update() {
@@ -135,6 +139,12 @@ window.onload = function() {
             fireLaserP2();
         }
 
+
+    }
+        
+    function togglePause() {
+
+        game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
 
     }
 
