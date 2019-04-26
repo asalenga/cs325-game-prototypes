@@ -201,7 +201,7 @@ window.onload = function() {
         finalScoreText.anchor.setTo(0.5,0.5);
         // music.pause();
         var gameOverComment = game.add.text(game.world.centerX, game.world.centerY+150, '', { fontSize: '20px', fill: '#FFFFFF' });
-        gameOverComment.achor.setTo(0.5,0.5);
+        gameOverComment.anchor.setTo(0.5,0.5);
         if (score <= 50) {
             //game.add.text(game.world.centerX-250, game.world.centerY+150, 'Bruh... Fr tho? Only ' +score + ' points? You done messed up.', { fontSize: '20px', fill: '#FFFFFF' });
             gameOverComment.setText('Bruh... Fr tho? Only ' +score + ' points? You done messed up.');
