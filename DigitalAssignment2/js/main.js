@@ -120,6 +120,7 @@ window.onload = function() {
         p2Instructions.anchor.setTo(0.5,0.5);
         
         pauseInstructions = game.add.text(this.game.world.centerX, 600, 'Press P to begin (and pause)', { fontSize: '25px', fill: '#999999', align:'center' });
+        pauseInstructions.anchor.setTo(0.5,0.5);
         
     }
     
