@@ -32,6 +32,7 @@ window.onload = function() {
     var p2Instructions;
     var pauseInstructions;
     var pauseText;
+    var gameOver = false;
 
     function create() {
         // timer = game.time.create(false);
@@ -161,13 +162,14 @@ window.onload = function() {
     }
         
     function togglePause() {
-
-        p1Instructions.visible = (p1Instructions.visible) ? false : true;
-        p2Instructions.visible = (p2Instructions.visible) ? false : true;
-        pauseText.visible = (pauseText.visible) ? false : true;
-        pauseInstructions.setText('Press P to unpause.\n\nNote: Only 6 bullets can be on-screen at once. Shoot wisely!');
-        pauseInstructions.visible = (pauseInstructions.visible) ? false : true;
-        game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
+        if (gameOver == false) {
+            p1Instructions.visible = (p1Instructions.visible) ? false : true;
+            p2Instructions.visible = (p2Instructions.visible) ? false : true;
+            pauseText.visible = (pauseText.visible) ? false : true;
+            pauseInstructions.setText('Press P to unpause.\n\nNote: Only 6 bullets can be on-screen at once. Shoot wisely!');
+            pauseInstructions.visible = (pauseInstructions.visible) ? false : true;
+            game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
+        }
 
     }
 
@@ -272,6 +274,7 @@ window.onload = function() {
             gameOverComment.setText("Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.");
         }
         // Source: https://github.com/photonstorm/phaser-examples/blob/master/examples/arcade%20physics/global%20pause.js
+        gameOver = true;
         game.physics.arcade.isPaused = true;
     }
 };
