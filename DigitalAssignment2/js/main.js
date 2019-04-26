@@ -67,7 +67,7 @@ window.onload = function() {
         lasers.enableBody = true;
         lasers.physicsBodyType = Phaser.Physics.ARCADE;
 
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 6; i++)
         {
             var a = lasers.create(0, 0, 'blueLaser');
             // a.name = 'blueLaser' + i;
