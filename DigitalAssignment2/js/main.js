@@ -157,10 +157,10 @@ window.onload = function() {
         
     function togglePause() {
 
-        p1Instructions.visible = (true) ? false : true;
-        p2Instructions.visible = (true) ? false : true;
+        p1Instructions.visible = (p1Instructions.visible) ? false : true;
+        p2Instructions.visible = (p2Instructions.visible) ? false : true;
         pauseInstructions.setText('Press P to unpause');
-        pauseInstructions.visible = (true) ? false : true;
+        pauseInstructions.visible = (pauseInstructions.visible) ? false : true;
         game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
 
     }
