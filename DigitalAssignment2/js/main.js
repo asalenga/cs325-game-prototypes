@@ -119,7 +119,7 @@ window.onload = function() {
         p2Instructions = game.add.text(3*this.game.world.width/4, this.game.world.centerY, 'Player 2\n<- and -> to move\nspacebar to shoot', { fontSize: '30px', fill: '#FFFFFF', align:'center' });
         p2Instructions.anchor.setTo(0.5,0.5);
         
-        pauseInstructions = game.add.text(this.game.world.centerX, 600, 'Press P to begin');
+        pauseInstructions = game.add.text(this.game.world.centerX, 600, 'Press P to begin (and pause)', { fontSize: '25px', fill: '#999999', align:'center' });
         
     }
     
