@@ -148,7 +148,7 @@ window.onload = function() {
             {
                 laser.reset(player1.x + player1.body.width/2.0 - 7, player1.y - 60);
                 laser.body.velocity.y = -300;
-                laserTime1 = game.time.now + 150;
+                laserTime1 = game.time.now + 350;
             }
         }
 
@@ -164,7 +164,7 @@ window.onload = function() {
             {
                 laser.reset(player2.x + player2.body.width/2.0 - 7, player2.y - 50);
                 laser.body.velocity.y = -300;
-                laserTime2 = game.time.now + 150;
+                laserTime2 = game.time.now + 350;
             }
         }
 
