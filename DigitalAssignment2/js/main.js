@@ -21,7 +21,8 @@ window.onload = function() {
     var player2;
     var enemy;
     // var timer;
-    var laserTime = 0;
+    var laserTime1 = 0;
+    var laserTime2 = 0;
     var done = false;
     var currSpeedY = 50;
     var numEnemies = 10;
@@ -139,7 +140,7 @@ window.onload = function() {
 
     function fireLaserP1 () {
 
-        if (game.time.now > laserTime)
+        if (game.time.now > laserTime1)
         {
             laser = lasers.getFirstExists(false);
 
@@ -147,7 +148,7 @@ window.onload = function() {
             {
                 laser.reset(player1.x + player1.body.width/2.0 - 7, player1.y - 60);
                 laser.body.velocity.y = -300;
-                laserTime = game.time.now + 150;
+                laserTime1 = game.time.now + 150;
             }
         }
 
@@ -155,7 +156,7 @@ window.onload = function() {
 
     function fireLaserP2 () {
 
-        if (game.time.now > laserTime)
+        if (game.time.now > laserTime2)
         {
             laser = lasers.getFirstExists(false);
 
@@ -163,7 +164,7 @@ window.onload = function() {
             {
                 laser.reset(player2.x + player2.body.width/2.0 - 7, player2.y - 50);
                 laser.body.velocity.y = -300;
-                laserTime = game.time.now + 150;
+                laserTime2 = game.time.now + 150;
             }
         }
 
