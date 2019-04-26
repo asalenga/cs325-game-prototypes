@@ -114,7 +114,7 @@ window.onload = function() {
         
         game.physics.arcade.isPaused = true;
         
-        pauseText = game.add.text(this.game.world.centerX, this.game.world.centeryY-200, 'PAUSED', { fontSize: '30px', fill: '#0055FF', align:'center' });
+        pauseText = game.add.text(this.game.world.centerX, 150, 'PAUSED', { fontSize: '50px', fill: '#0055FF', align:'center' });
         pauseText.anchor.setTo(0.5,0.5);
         
         p1Instructions = game.add.text(this.game.world.width/4, this.game.world.centerY, 'Player 1\nA and D to move\n1 to shoot', { fontSize: '30px', fill: '#FFFFFF', align:'center' });
