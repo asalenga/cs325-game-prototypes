@@ -123,7 +123,7 @@ window.onload = function() {
         p2Instructions = game.add.text(3*this.game.world.width/4, this.game.world.centerY, 'Player 2\n<- and -> to move\nspacebar to shoot', { fontSize: '30px', fill: '#FFFFFF', align:'center' });
         p2Instructions.anchor.setTo(0.5,0.5);
         
-        pauseInstructions = game.add.text(this.game.world.centerX, 600, 'Press P to begin (and pause)', { fontSize: '25px', fill: '#999999', align:'center' });
+        pauseInstructions = game.add.text(this.game.world.centerX, 600, 'Press P to begin (and pause)\n\nNote: Only 6 bullets can be on-screen at once. Shoot wisely!', { fontSize: '25px', fill: '#999999', align:'center' });
         pauseInstructions.anchor.setTo(0.5,0.5);
         
     }
@@ -165,7 +165,7 @@ window.onload = function() {
         p1Instructions.visible = (p1Instructions.visible) ? false : true;
         p2Instructions.visible = (p2Instructions.visible) ? false : true;
         pauseText.visible = (pauseText.visible) ? false : true;
-        pauseInstructions.setText('Press P to unpause');
+        pauseInstructions.setText('Press P to unpause.\n\nNote: Only 6 bullets can be on-screen at once. Shoot wisely!');
         pauseInstructions.visible = (pauseInstructions.visible) ? false : true;
         game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
 
