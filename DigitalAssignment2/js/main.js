@@ -110,6 +110,12 @@ window.onload = function() {
         
         game.physics.arcade.isPaused = true;
         
+        var p1Instructions = game.add.text(this.game.world.width/4, this.game.world.centerY, 'Player 1\nA and D to move\n1 to shoot', { fontSize: '20px', fill: '#FFFFFF' });
+        p1Instructions.anchor.setTo(0.5,0.5);
+        
+        var p2Instructions = game.add.text(3*this.game.world.width/4, this.game.world.centerY, 'Player 2\n<- and -> to move\nspacebar to shoot', { fontSize: '20px', fill: '#FFFFFF' });
+        p2Instructions.anchor.setTo(0.5,0.5);
+        
     }
     
     function update() {
@@ -146,6 +152,8 @@ window.onload = function() {
         
     function togglePause() {
 
+        p1Instructions.visible = (true) ? false : true;
+        p2Instructions.visible = (true) ? false : true;
         game.physics.arcade.isPaused = (game.physics.arcade.isPaused) ? false : true;
 
     }
