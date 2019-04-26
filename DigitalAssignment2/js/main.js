@@ -108,6 +108,8 @@ window.onload = function() {
         pKey = game.input.keyboard.addKey(Phaser.Keyboard.P);
         pKey.onDown.add(togglePause, this);
         
+        game.physics.arcade.isPaused = true;
+        
     }
     
     function update() {
