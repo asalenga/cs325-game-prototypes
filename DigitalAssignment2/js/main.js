@@ -72,7 +72,7 @@ window.onload = function() {
         lasers.enableBody = true;
         lasers.physicsBodyType = Phaser.Physics.ARCADE;
 
-        for (var i = 0; i < 6; i++)
+        for (var i = 0; i < 10; i++)
         {
             var a = lasers.create(0, 0, 'blueLaser');
             // a.name = 'blueLaser' + i;
@@ -183,7 +183,7 @@ window.onload = function() {
             {
                 laser.reset(player1.x + player1.body.width/2.0 - 7, player1.y - 60);
                 laser.body.velocity.y = -300;
-                laserTime1 = game.time.now + 250;
+                laserTime1 = game.time.now + 150;
             }
         }
 
@@ -199,7 +199,7 @@ window.onload = function() {
             {
                 laser.reset(player2.x + player2.body.width/2.0 - 7, player2.y - 50);
                 laser.body.velocity.y = -300;
-                laserTime2 = game.time.now + 250;
+                laserTime2 = game.time.now + 150;
             }
         }
 
