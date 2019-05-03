@@ -221,7 +221,7 @@ window.onload = function() {
         killCounter++;
         score += 10;
         scoreText.text = 'Score: ' + score;
-        if (killCounter == numEnemies) {currSpeedY += 2000;}
+        if (killCounter == numEnemies) {currSpeedY += 20;}
         var b = enemies.create(50 + (Math.random() * (game.world.width - 100)), 0, 'enemy');
         b.body.velocity.y = currSpeedY + (Math.random() * 100);
         b.checkWorldBounds = true;
