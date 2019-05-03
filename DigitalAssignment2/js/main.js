@@ -273,7 +273,8 @@ window.onload = function() {
             //game.add.text(game.world.centerX-250, game.world.centerY+150, "Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.", { fontSize: '20px', fill: '#FFFFFF' });
             gameOverComment.setText("Honestly, what is life? Who are you? Are you even real? You've seriously beaten this game.\nWhat a legend. Here's your reward: a thumbs up. Now stop playing. Seriously.");
         }
-        var extraComment = game.add.text(game.world.width - 150, game.world.height - 40, 'I hope you had fun playing the game,\nbc I had sO mUch fUN cOdINg it. 🙃', { fontSize: '8px', fill: '#AAAAAA' });
+        var extraComment = game.add.text(game.world.width - 145, game.world.height - 35, 'I hope you had fun playing the game,\nbc I had sO mUch fUN cOdINg it.', { fontSize: '8px', fill: '#AAAAAA' });
+        var emoji = game.add.text(game.world.width - 5, game.world.height - 5, '🙃', { fontSize: '12px'});
         // Source: https://github.com/photonstorm/phaser-examples/blob/master/examples/arcade%20physics/global%20pause.js
         gameOver = true;
         game.physics.arcade.isPaused = true;
